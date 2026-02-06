@@ -16,8 +16,12 @@ export const verifyMail = async (token, email) => {
     "utf-8",
   );
 
+  //Converts template into a function
   const template = handlebars.compile(emailTemplateSource);
+  //Insert token into HTML
   const htmlToSend = template({ token: encodeURIComponent(token) });
+
+  //Creating Mail transporter
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
